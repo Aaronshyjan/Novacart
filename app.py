@@ -5,9 +5,7 @@ from datetime import datetime
 from io import BytesIO
 
 # MongoDB Connection
-[mongo]
-uri = "mongodb+srv://aaronshyjan2019:oGJt8ff4i88MXQig@novacart.mongodb.net/e_commerce?retryWrites=true&w=majority"
-MONGO_URI = st.secrets["mongo"]["uri"]
+MONGO_URI = "mongodb://localhost:27017"
 client = MongoClient(MONGO_URI)
 db = client["e_commerce"]
 products_collection = db["products"]
@@ -28,7 +26,7 @@ def set_background():
         """
         <style>
             .stApp {
-                background: url('https://img.freepik.com/free-photo/abstract-textured-backgound_1258-30461.jpg?semt=ais_hybrid');  /* Use your local image file or URL here */
+                background: url('https://www.pixelstalk.net/wp-content/uploads/image12/A-sleek-3D-black-spiral-gently-rotating-in-a-dark.jpg');  /* Use your local image file or URL here */
                 background-size: cover;
                 background-position: center;
                 color: white;
@@ -59,7 +57,7 @@ def set_background():
             }
             th {
                 background-color: #222222;
-                color: white;
+                color: blue;
             }
         </style>
         """,
@@ -129,10 +127,10 @@ def login_page():
             else:
                 st.error("❌ Invalid credentials!")
 
-# Home Page (Product Listing)
+# Home Page (Showing Products)
 def home_page():
     st.markdown("<h1 class='title-center'>NOVACART.com</h1>", unsafe_allow_html=True)
-    
+
     categories = products_collection.distinct("category")
     selected_category = st.selectbox("Select Category", ["All"] + categories)
 
@@ -163,7 +161,7 @@ def home_page():
                     st.success(f"✅ {product['name']} added to cart!")
                     st.rerun()
 
-# Admin Panel - Manage Products (Add, Update, Remove)
+# Admin Panel - (Manage Products :Add, Update, Remove)
 def admin_panel():
     st.markdown("<h1 class='title-center'>Admin Panel - Manage Products</h1>", unsafe_allow_html=True)
     
