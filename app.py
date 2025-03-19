@@ -5,7 +5,8 @@ from datetime import datetime
 from io import BytesIO
 
 # MongoDB Connection
-uri="mongodb+srv://aaronshyjan2019:oGJt8ff4i88MXQig@novacart.mongodb.net/e_commerceretryWrites=true&w=majority"
+[mongo]
+uri = "mongodb+srv://aaronshyjan2019:oGJt8ff4i88MXQig@novacart.mongodb.net/e_commerce?retryWrites=true&w=majority"
 MONGO_URI = st.secrets["mongo"]["uri"]
 client = MongoClient(MONGO_URI)
 db = client["e_commerce"]
